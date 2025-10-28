@@ -69,6 +69,8 @@ class PlantaAtaque(Personaje):
         Args:
             zombi (Zombi): objeto Zombi que será atacado
         """
+        if not self.estado_vivo():
+            return
         if zombi.vida <= 0:
             print(f"{zombi.nombre} ya ha sido eliminado y no se puede atacar")
         else:
@@ -87,6 +89,8 @@ class Zombi(Personaje):
         Args:
             planta (PlantaAtaque o PlantaCurativa): planta objetivo del ataque
         """
+        if not self.estado_vivo():
+            return
         if planta.vida <= 0:
             print(f"{planta.nombre} ya ha sido eliminado y no se puede atacar")
         else:
@@ -122,9 +126,12 @@ class ZombiFuerte(Zombi):
         Args:
             planta (PlantaAtaque o PlantaCurativa): objetivo del ataque
         """
+        if not self.estado_vivo():
+            return
         if getattr(self, "daño_critico", False): # "getattr" Busca self.daño_critico, si no existe devuelve False y no da error
             print("Daño critico!")
         super().accion(planta)
+          
 
 # CLASE HIJA: ZombiRegenerativo        
 class ZombiRegenerativo(Zombi):
@@ -150,6 +157,8 @@ class ZombiRegenerativo(Zombi):
         Args:
             planta (PlantaAtaque o PlantaCurativa): objetivo del ataque
         """
+        if not self.estado_vivo():
+            return
         super().accion(planta)
         self.vida += self.regeneracion
         if self.vida > self.vida_maxima:
@@ -172,6 +181,8 @@ class PlantaCurativa(Personaje):
         Args:
             objetivo (PlantaAtaque o PlantaCurativa): planta objetivo de la curación
         """
+        if not self.estado_vivo():
+            return
         if objetivo.vida > 0:
             objetivo.vida += self.poder #Aumenta la vida del objetivo usando el valor de poder
             if objetivo.vida > objetivo.vida_maxima: 
@@ -180,10 +191,13 @@ class PlantaCurativa(Personaje):
             else:
                 print(f"{self.nombre} cura a {objetivo.nombre} restaurando {self.poder} puntos de vida")
                 print(f"{objetivo.nombre} ahora tiene {objetivo.vida} puntos de vida")
+        else:
+                print(f"{objetivo.nombre} no se puede curar porque ha sido eliminado")
+
    
 # CREACIÓN DE PERSONAJES    
 lanzaguizantes = PlantaAtaque("Lanzaguizantes", 100, 100)
-zombi = Zombi("Zombi", 100, 10)
+zombi = Zombi("Zombi", 100, 100)
 zombifuerte = ZombiFuerte("Zombi Fuerte", 100, 10)
 zombiregenerativo = ZombiRegenerativo("Zombi Regenerativo", 100, 5)
 girasol = PlantaCurativa("Girasol", 100, 5)
