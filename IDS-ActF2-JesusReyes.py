@@ -40,7 +40,22 @@ class Personaje:
         """
         Método génerico de acción que será redefinido por las subclases
         """
-        pass    
+        pass
+    
+    def estado_vivo(self):
+        """
+        Verifica si el personaje está vivo.
+
+        Returns:
+            bool: True si la vida es mayor a 0, de lo contrario muestra un mensaje y retorna False.
+        """
+        if self.vida > 0:
+            return True
+        else:
+            print(f"{self.nombre} ha sido eliminado y no puede realizar ninguna acción")
+            return False
+             
+                
 
 # CLASE HIJA: PlantaAtaque
 class PlantaAtaque(Personaje):
