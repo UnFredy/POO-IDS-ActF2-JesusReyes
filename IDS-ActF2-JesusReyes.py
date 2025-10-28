@@ -195,8 +195,8 @@ class PlantaCurativa(Personaje):
 
    
 # CREACIÓN DE PERSONAJES    
-lanzaguizantes = PlantaAtaque("Lanzaguizantes", 100, 100)
-zombi = Zombi("Zombi", 100, 100)
+lanzaguizantes = PlantaAtaque("Lanzaguizantes", 100, 10)
+zombi = Zombi("Zombi", 100, 10)
 zombifuerte = ZombiFuerte("Zombi Fuerte", 100, 10)
 zombiregenerativo = ZombiRegenerativo("Zombi Regenerativo", 100, 5)
 girasol = PlantaCurativa("Girasol", 100, 5)
