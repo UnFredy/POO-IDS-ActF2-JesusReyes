@@ -54,8 +54,7 @@ class Personaje:
         else:
             print(f"{self.nombre} ha sido eliminado y no puede realizar ninguna acción")
             return False
-             
-                
+                             
 
 # CLASE HIJA: PlantaAtaque
 class PlantaAtaque(Personaje):
